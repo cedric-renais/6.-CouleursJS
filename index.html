@@ -8,10 +8,17 @@
     <title>Linear Gradient Creator</title>
   </head>
   <body>
+    <!------------>
+    <!-- HEADER -->
+    <!------------>
     <header>
       <h1>Créateur de <span>Gradient</span></h1>
     </header>
+    <!---------->
+    <!-- MAIN -->
+    <!---------->
     <main>
+      <!-- Gradient Creator -->
       <div class="gradient-creator">
         <div class="gradient-creator__input-group">
           <label for="color-1">Première couleur</label>
@@ -31,13 +38,16 @@
             aria-label="Choisissez la seconde couleur du gradient"
           />
         </div>
+        <!-- Gradient Orientation -->
         <div class="gradient-creator__orientation-group">
-          <label for="orientation">Orientation du gradient:</label>
-          <span
-            id="orientation-desc"
-            class="gradient-creator__orientation-value"
-            >90°</span
-          >
+          <div class="gradient-creator__orientation-label">
+            <label for="orientation">Orientation du gradient</label>
+            <span
+              id="orientation-desc"
+              class="gradient-creator__orientation-value"
+              >90°</span
+            >
+          </div>
           <input
             type="range"
             id="orientation"
@@ -51,6 +61,7 @@
           />
         </div>
       </div>
+      <!-- Gradient Buttons -->
       <div class="gradient-creator__button-group">
         <button
           class="gradient-creator__button--copy"
