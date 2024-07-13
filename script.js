@@ -58,33 +58,46 @@ function copyGradientToClipboard(body) {
     });
 }
 
-// Génère une couleur aléatoire en hexadécimal
+/////////////////////////////////////////////////
+// Génère une couleur aléatoire en hexadécimal //
+/////////////////////////////////////////////////
+
 function getRandomColor() {
   return `#${Math.floor(Math.random() * 0xffffff)
     .toString(16)
     .padStart(6, '0')}`;
 }
 
-// Génère un gradient aléatoire et met à jour les inputs et le fond
+////////////////////////////////////////////////////////////////////////////
+// Génère un gradient aléatoire et met à jour les inputs et le background //
+// Définit une première couleur aléatoire                                 //
+// Définit une deuxième couleur aléatoire                                 //
+// Définit une orientation aléatoire entre 0 et 360 degrés                //
+// Met à jour le gradient avec les nouvelles valeurs                      //
+////////////////////////////////////////////////////////////////////////////
+
 function generateRandomGradient(elements) {
   const { color1Input, color2Input, orientationInput } = elements;
-  color1Input.value = getRandomColor(); // Définit une première couleur aléatoire
-  color2Input.value = getRandomColor(); // Définit une deuxième couleur aléatoire
-  orientationInput.value = Math.floor(Math.random() * 361); // Définit une orientation aléatoire
-  updateGradient(elements); // Met à jour le gradient avec les nouvelles valeurs
+  color1Input.value = getRandomColor();
+  color2Input.value = getRandomColor();
+  orientationInput.value = Math.floor(Math.random() * 361);
+  updateGradient(elements);
 }
 
-// Ajoute les écouteurs d'événements aux éléments nécessaires
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// Ajoute les écouteurs d'événements aux éléments nécessaires                                       //
+// Ajoute un écouteur d'événement pour mettre à jour le gradient lors de la modification des inputs //
+// Ajoute des écouteurs pour les boutons de copie et de génération aléatoire                        //
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function addEventListeners(elements) {
   const { color1Input, color2Input, orientationInput, body } = elements;
-  // Ajoute un écouteur d'événement pour mettre à jour le gradient lors de la modification des inputs
   ['input'].forEach((event) => {
     color1Input.addEventListener(event, () => updateGradient(elements));
     color2Input.addEventListener(event, () => updateGradient(elements));
     orientationInput.addEventListener(event, () => updateGradient(elements));
   });
 
-  // Ajoute des écouteurs pour les boutons de copie et de génération aléatoire
   document
     .querySelector('.gradient-creator__button--copy')
     .addEventListener('click', () => copyGradientToClipboard(body));
@@ -93,13 +106,27 @@ function addEventListeners(elements) {
     .addEventListener('click', () => generateRandomGradient(elements));
 }
 
-// Fonction principale exécutée au chargement du document
+//////////////////////////////////////
+// Fonction principale du script    //
+// Exécute le code principal du DOM //
+// Initialise les éléments du DOM   //
+// Définit les valeurs par défaut   //
+// Met à jour le gradient           //
+//////////////////////////////////////
+
 function main() {
   document.addEventListener('DOMContentLoaded', () => {
-    const elements = initDOMElements(); // Initialise les éléments du DOM
-    updateGradient(elements); // Met à jour le gradient initialement
-    addEventListeners(elements); // Ajoute les écouteurs d'événements
+    const elements = initDOMElements();
+    elements.color1Input.value = '#ffc53d';
+    elements.color2Input.value = '#f76b15';
+    elements.orientationInput.value = 145;
+    updateGradient(elements);
+    addEventListeners(elements);
   });
 }
 
-main(); // Exécute la fonction principale
+////////////////////////////////////
+// Exécute la fonction principale //
+////////////////////////////////////
+
+main();
